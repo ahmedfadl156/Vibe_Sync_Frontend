@@ -128,3 +128,18 @@
     @apply font-sans;
   }
 }
+.waveform-container {
+  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent)
+}
+
+.analog-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99;
+  opacity: 0.03;
+  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBFLIsBdCN_E_Rt4NKHvSLyH92VDrDOUG_9Kt4OjGAK_M-QRUBmKzQLkRdud4mncLOXoAXVJhGa8z3E9K2av-uTU5w_UPTpGee7BpZ7gUGwIU1fqwQJal2v8Xsa5NLJehUI0N0w_Isz0fzEOJp6NOekucIF-MQ-s1UO8R3f_pRkafeU6YMIByHaAxQ52-jxiDq7vzEY7oHtw8JerOvdOVxtkVV2PyuF-zSZOhq1Aa4VXn-RSCpqCYBeRLbvcAIop5tYpuavmBN0syg);
+}
