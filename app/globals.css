@@ -143,3 +143,8 @@
   opacity: 0.03;
   background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBFLIsBdCN_E_Rt4NKHvSLyH92VDrDOUG_9Kt4OjGAK_M-QRUBmKzQLkRdud4mncLOXoAXVJhGa8z3E9K2av-uTU5w_UPTpGee7BpZ7gUGwIU1fqwQJal2v8Xsa5NLJehUI0N0w_Isz0fzEOJp6NOekucIF-MQ-s1UO8R3f_pRkafeU6YMIByHaAxQ52-jxiDq7vzEY7oHtw8JerOvdOVxtkVV2PyuF-zSZOhq1Aa4VXn-RSCpqCYBeRLbvcAIop5tYpuavmBN0syg);
 }
+
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}

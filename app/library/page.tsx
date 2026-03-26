@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { LibraryHeader } from "@/components/library/LibraryHeader";
 import { TopArtists } from "@/components/library/TopArtists";
 import { TopTracks } from "@/components/library/TopTracks";
+import { SaveTopTracksButton } from "@/components/library/SaveTopTracksButton";
 import { useEffect } from "react";
 
 const LibraryPage = () => {
@@ -55,7 +56,10 @@ const LibraryPage = () => {
                 )}
 
                 {libraryData?.data.tracks && (
-                    <TopTracks tracks={libraryData.data.tracks} />
+                    <>
+                        <TopTracks tracks={libraryData.data.tracks} />
+                        <SaveTopTracksButton />
+                    </>
                 )}
             </div>
         </main>

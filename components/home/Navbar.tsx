@@ -9,6 +9,7 @@ import { logout } from "@/services/room";
 const NAV_LINKS = [
   { label: "Rooms", href: "/rooms" },
   { label: "Library", href: "/library" },
+  { label: "Generate", href: "/generate" },
 ];
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
