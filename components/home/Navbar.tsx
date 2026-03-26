@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
+import { logout } from "@/services/room";
 
 const NAV_LINKS = [
   { label: "Rooms", href: "/rooms" },
@@ -13,11 +14,25 @@ const NAV_LINKS = [
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Navbar() {
-  const { user, isAuthenticated, isLoading } = useAuth();
+  const { user, isAuthenticated, isLoading, refetch } = useAuth();
   const pathname = usePathname();
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const initial = user?.displayName?.[0]?.toUpperCase() ?? "";
+
+  const handleLogout = async () => {
+    try {
+      setIsLoggingOut(true);
+      await logout();
+      await refetch();
+      router.push("/");
+    } catch {
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
 
   return (
     <header className="fixed top-0 inset-x-0 z-50">
@@ -98,6 +113,30 @@ export default function Navbar() {
                 >
                   {initial}
                 </div>
+                {/* Logout button */}
+                <button
+                  onClick={handleLogout}
+                  disabled={isLoggingOut}
+                  title="Logout"
+                  className="
+                    flex items-center justify-center w-9 h-9 rounded-full
+                    border border-white/10 bg-white/5
+                    text-[#A8956A] hover:text-red-400 hover:border-red-400/30 hover:bg-red-500/8
+                    transition-all duration-200 active:scale-95
+                    disabled:opacity-50 disabled:cursor-not-allowed
+                  "
+                >
+                  {isLoggingOut ? (
+                    <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                    </svg>
+                  ) : (
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1" />
+                    </svg>
+                  )}
+                </button>
               </div>
             ) : (
               /* Unauthenticated state */
@@ -184,8 +223,8 @@ export default function Navbar() {
                     "
                   >
                     {initial}
-                  </div>
-                  <div className="flex flex-col">
+                </div>
+                  <div className="flex flex-col flex-1">
                     <span className="text-sm text-[#FEF3C7] font-semibold leading-tight">
                       {user.displayName}
                     </span>
@@ -193,6 +232,23 @@ export default function Navbar() {
                       {String(user.email)}
                     </span>
                   </div>
+                  {/* Mobile logout */}
+                  <button
+                    onClick={() => { setMenuOpen(false); handleLogout(); }}
+                    disabled={isLoggingOut}
+                    title="Logout"
+                    className="
+                      flex items-center justify-center w-9 h-9 rounded-full shrink-0
+                      border border-white/10 bg-white/5
+                      text-[#A8956A] hover:text-red-400 hover:border-red-400/30 hover:bg-red-500/8
+                      transition-all duration-200 active:scale-95
+                      disabled:opacity-50 disabled:cursor-not-allowed
+                    "
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1" />
+                    </svg>
+                  </button>
                 </div>
               ) : (
                 <a
