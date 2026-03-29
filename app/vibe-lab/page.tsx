@@ -21,7 +21,7 @@ const VIBE_LAB_CARDS = [
                         <p className="text-[#ebe0da]/70 mb-6 max-w-md font-light leading-relaxed">
                             Let AI judge your top tracks with brutal honesty and hilarious insights. No playlist is safe from the digital critic.
                         </p>
-                        <Link href="/roast" className="bg-[#ffb77d] hover:bg-[#ffb77d]/90 text-[#0D0906] font-semibold py-3 px-8 rounded-full transition-all active:scale-95 flex items-center gap-2 group/btn w-fit shadow-lg shadow-[#ffb77d]/20">
+                        <Link href="/vibe-lab/roast" className="bg-[#ffb77d] hover:bg-[#ffb77d]/90 text-[#0D0906] font-semibold py-3 px-8 rounded-full transition-all active:scale-95 flex items-center gap-2 group/btn w-fit shadow-lg shadow-[#ffb77d]/20">
                             Try Now
                             <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
                         </Link>
@@ -53,7 +53,7 @@ const VIBE_LAB_CARDS = [
                         <p className="text-[#ebe0da]/70 mb-6 text-sm font-light leading-relaxed">
                             Calculate how obscure your taste really is compared to the mainstream.
                         </p>
-                        <Link href="/hipster-meter" className="w-full px-4 bg-white/5 hover:bg-white/10 text-[#ebe0da] font-semibold py-3 rounded-full transition-all active:scale-95 border border-white/10 backdrop-blur-md">
+                        <Link href="/vibe-lab/hipster-meter" className="w-full px-4 bg-white/5 hover:bg-white/10 text-[#ebe0da] font-semibold py-3 rounded-full transition-all active:scale-95 border border-white/10 backdrop-blur-md">
                             Calculate Score
                         </Link>
                     </div>
@@ -78,7 +78,7 @@ const VIBE_LAB_CARDS = [
                         </p>
                     </div>
                     <div className="shrink-0 transition-transform duration-500 md:group-hover:-translate-x-2">
-                        <Link href="/festival-poster" className="bg-[#ffb77d] hover:bg-[#ffb77d]/90 text-[#0D0906] font-extrabold py-4 px-10 rounded-full transition-all shadow-xl shadow-[#ffb77d]/20 active:scale-95 text-base sm:text-lg uppercase tracking-widest whitespace-nowrap">
+                        <Link href="/vibe-lab/festival-poster" className="bg-[#ffb77d] hover:bg-[#ffb77d]/90 text-[#0D0906] font-extrabold py-4 px-10 rounded-full transition-all shadow-xl shadow-[#ffb77d]/20 active:scale-95 text-base sm:text-lg uppercase tracking-widest whitespace-nowrap">
                             Create Poster
                         </Link>
                     </div>
