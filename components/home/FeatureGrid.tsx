@@ -3,7 +3,12 @@ const features = [
     number: "01",
     headline: (
       <>
-        One room.<br />All your Spotifys.
+        Musical Roast.
+      </>
+    ),
+    description: (
+      <>
+        Let AI judge your top tracks. Brutally honest, hilarious insights.
       </>
     ),
   },
@@ -11,24 +16,34 @@ const features = [
     number: "02",
     headline: (
       <>
-        Pick the vibe.<br />We find the overlap.
+        Vibe Lab
       </>
     ),
+    description: (
+      <>
+        Generate viral Festival Lineups & Time Capsules based on your data.
+      </>
+    )
   },
   {
     number: "03",
     headline: (
       <>
-        The playlist builds<br />itself, live.
+      The Generator
       </>
     ),
+    description: (
+      <>
+      Create smart playlists using our refined, niche mood engine.
+      </>
+    )
   },
 ];
 
 const FeatureGrid = () => {
   return (
     <div className="relative z-10 w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-6 px-4 mt-24">
-      {features.map(({ number, headline }) => (
+      {features.map(({ number, headline , description }) => (
         <div
           key={number}
           className="
@@ -45,9 +60,12 @@ const FeatureGrid = () => {
           <span className="text-6xl text-[#2A1E08] font-bold leading-none select-none">
             {number}
           </span>
-          <h3 className="text-2xl text-[#FEF3C7] font-bold leading-tight">
-            {headline}
-          </h3>
+          <div className="flex flex-col">
+            <h3 className="text-3xl mb-4 text-[#FEF3C7] font-bold leading-tight">
+              {headline}
+            </h3>
+            <p className="text-[#A8956A] text-sm md:text-lg tracking-wide font-medium">{description}</p>
+          </div>
         </div>
       ))}
     </div>

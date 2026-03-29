@@ -4,11 +4,11 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
-import { logout } from "@/services/room";
+import { logout } from "@/services/users";
 
 const NAV_LINKS = [
-  { label: "Rooms", href: "/rooms" },
   { label: "Library", href: "/library" },
+  { label: "VibeLab", href: "/vibe-lab" },
   { label: "Generate", href: "/generate" },
 ];
 
@@ -61,7 +61,7 @@ export default function Navbar() {
             </svg>
             <span className="text-lg font-bold tracking-tight">
               <span className="text-[#D97706]">Vibe</span>
-              <span className="text-[#FEF3C7]">Sync</span>
+              <span className="text-[#FEF3C7]">Sage</span>
             </span>
           </Link>
 

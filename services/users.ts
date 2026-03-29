@@ -1,5 +1,8 @@
 import { customFetch } from "./api";
 
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:5500/api/v1";
+
+
 export interface SaveTopTracksResponse {
     status: string;
     message: string;
@@ -40,5 +43,12 @@ export const generateVibePlaylist = async (
     return await customFetch<GeneratePlaylistResponse>('/users/generate-vibe', {
         method: 'POST',
         body: JSON.stringify(body),
+    });
+};
+
+export const logout = async (): Promise<void> => {
+    await fetch(`${BASE_URL}/auth/logout`, {
+        method: 'POST',
+        credentials: 'include',
     });
 };

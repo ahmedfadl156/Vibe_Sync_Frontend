@@ -6,8 +6,8 @@ const HomeFooter = () => {
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D97706] opacity-75" />
           <span className="relative inline-flex rounded-full h-3 w-3 bg-[#D97706]" />
         </span>
-        <span className="text-xs text-[#FEF3C7] tracking-[0.15em] uppercase font-semibold">
-          2,847 rooms vibing right now
+        <span className="text-xs uppercase text-[#FEF3C7] tracking-[0.15em] uppercase font-semibold">
+          2.5 million sound dnas analyzed
         </span>
       </div>
     </footer>

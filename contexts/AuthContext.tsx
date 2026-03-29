@@ -54,6 +54,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         fetchUser();
     }, [fetchUser]);
 
+
     return (
         <AuthContext.Provider
             value={{

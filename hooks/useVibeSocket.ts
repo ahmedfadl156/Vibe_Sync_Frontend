@@ -2,6 +2,7 @@ import { io, Socket } from "socket.io-client";
 import { useEffect, useRef } from "react";
 import { PopulatedUser } from "@/types/room";
 import { QueueSocketPayload } from "@/types/queue";
+import { SyncedPlaybackState } from "@/types/player";
 
 const SOCKET_URL = process.env.NEXT_PUBLIC_API_URL?.replace('/api/v1', '') || "http://127.0.0.1:5500";
 
@@ -10,6 +11,7 @@ export const useVibeSocket = (
     callbacks: {
         onUserJoined?: (user: PopulatedUser, message: string) => void;
         onQueueUpdated?: (payload: QueueSocketPayload) => void;
+        onPlaybackState?: (state: SyncedPlaybackState) => void;
     }
 ) => {
     const socketRef = useRef<Socket | null>(null);
@@ -38,10 +40,16 @@ export const useVibeSocket = (
             callbacksRef.current.onQueueUpdated?.(payload);
         });
 
+        // Fires if the backend emits playback sync events to participants
+        socketRef.current.on('playback_state', (state: SyncedPlaybackState) => {
+            callbacksRef.current.onPlaybackState?.(state);
+        });
+
         return () => {
             if (socketRef.current) {
                 socketRef.current.off('user_joined');
                 socketRef.current.off('queue_updated');
+                socketRef.current.off('playback_state');
                 socketRef.current.disconnect();
             }
         };
