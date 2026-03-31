@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight, Brain, TrendingDown } from "lucide-react";
+import { ArrowRight, Brain, TrendingDown, Heart } from "lucide-react";
 import Link from "next/link";
 
 const VIBE_LAB_CARDS = [
@@ -80,6 +80,33 @@ const VIBE_LAB_CARDS = [
                     <div className="shrink-0 transition-transform duration-500 md:group-hover:-translate-x-2">
                         <Link href="/vibe-lab/festival-poster" className="bg-[#ffb77d] hover:bg-[#ffb77d]/90 text-[#0D0906] font-extrabold py-4 px-10 rounded-full transition-all shadow-xl shadow-[#ffb77d]/20 active:scale-95 text-base sm:text-lg uppercase tracking-widest whitespace-nowrap">
                             Create Poster
+                        </Link>
+                    </div>
+                </div>
+            </>
+        )
+    },
+    {
+        id: 'vibe-match',
+        colSpan: 'md:col-span-6',
+        height: 'h-[400px]',
+        image: '/card-1.png',
+        imageClassName: 'object-cover transition-transform duration-700 group-hover:scale-105 opacity-50',
+        content: (
+            <>
+                <div className="absolute inset-0 bg-linear-to-t from-[#0D0906] via-[#0D0906]/30 to-transparent z-10 transition-opacity duration-500 group-hover:opacity-80"></div>
+                <div className="absolute inset-0 z-20 p-8 flex flex-col justify-end">
+                    <div className="p-6 rounded-2xl bg-[#1A1412]/60 border border-white/5 backdrop-blur-md transition-transform duration-500 group-hover:translate-y-[-8px]">
+                        <div className="flex items-center gap-3 mb-4">
+                            <Heart className="text-[#ffb77d] w-8 h-8" />
+                            <h3 className="text-3xl font-bold text-[#ebe0da] tracking-tight">Vibe Match</h3>
+                        </div>
+                        <p className="text-[#ebe0da]/70 mb-6 max-w-md font-light leading-relaxed">
+                            Discover your musical compatibility with friends. Compare tastes, find common ground, and generate blended playlists.
+                        </p>
+                        <Link href="/vibe-lab/vibe-match" className="bg-[#ffb77d] hover:bg-[#ffb77d]/90 text-[#0D0906] font-semibold py-3 px-8 rounded-full transition-all active:scale-95 flex items-center gap-2 group/btn w-fit shadow-lg shadow-[#ffb77d]/20">
+                            Find Your Match
+                            <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
                         </Link>
                     </div>
                 </div>
