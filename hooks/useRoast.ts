@@ -3,7 +3,7 @@ import { getMyMusicRoast } from '@/services/roast';
 import { RoastResponse } from '@/types/roast';
 
 export const useMusicRoast = () => {
-    return useMutation<RoastResponse, Error, void>({
-        mutationFn: () => getMyMusicRoast(),
+    return useMutation<RoastResponse, Error, 'ar' | 'en'>({
+        mutationFn: (lang) => getMyMusicRoast(lang),
     });
 };

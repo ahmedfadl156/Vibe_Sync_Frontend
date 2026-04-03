@@ -1,12 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import RoastCard from "@/components/Roast/RoastCard";
 import RoastLoader from "@/components/Roast/RoastLoader";
 import { useMusicRoast } from "@/hooks/useRoast";
 
 const page = () => {
     const { mutate, data: roastData, isPending, isError, error } = useMusicRoast();
+    const [lang, setLang] = useState<'ar' | 'en'>('ar');
+    const [isLangOpen, setIsLangOpen] = useState(false);
 
     return (
         <main className="mx-auto max-w-7xl py-32 px-4 md:px-6 lg:px-8 min-h-screen">
@@ -22,8 +24,42 @@ const page = () => {
             <div className="flex flex-col items-center w-full">
                 {!isPending && !roastData && (
                     <div className="flex flex-col items-center justify-center py-12 animate-in fade-in zoom-in-95 duration-700">
+                        <div className="mb-10 relative flex flex-col items-center z-20">
+                            <p className="text-[#A8956A] text-sm md:text-base font-semibold uppercase tracking-widest mb-3">Choose Roast Language</p>
+                            <div className="relative w-64 md:w-72">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsLangOpen(!isLangOpen)}
+                                    className="w-full bg-[#1A1614]/80 border-2 border-[#FFB77D]/30 hover:border-[#FFB77D]/70 rounded-2xl px-6 py-4 flex items-center justify-between transition-all duration-300 shadow-xl backdrop-blur-md"
+                                >
+                                    <span className="text-[#EBE0DA] font-medium text-lg">
+                                        {lang === 'ar' ? 'Arabic (العربية)' : 'English'}
+                                    </span>
+                                    <svg className={`w-5 h-5 text-[#FFB77D] transition-transform duration-300 ${isLangOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                </button>
+                                
+                                <div className={`absolute top-full left-0 mt-2 w-full bg-[#1A1614] border border-[#FFB77D]/20 rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 origin-top z-50 ${isLangOpen ? 'scale-y-100 opacity-100 pointer-events-auto' : 'scale-y-0 opacity-0 pointer-events-none'}`}>
+                                    <button
+                                        type="button"
+                                        onClick={() => { setLang('en'); setIsLangOpen(false); }}
+                                        className={`w-full text-left px-6 py-4 transition-colors hover:bg-[#FFB77D]/10 text-lg ${lang === 'en' ? 'text-[#FFB77D] font-bold bg-[#FFB77D]/5' : 'text-[#EBE0DA] font-medium'}`}
+                                    >
+                                        English
+                                    </button>
+                                    <div className="h-px w-full bg-[#FFB77D]/10"></div>
+                                    <button
+                                        type="button"
+                                        onClick={() => { setLang('ar'); setIsLangOpen(false); }}
+                                        className={`w-full text-left px-6 py-4 transition-colors hover:bg-[#FFB77D]/10 text-lg ${lang === 'ar' ? 'text-[#FFB77D] font-bold bg-[#FFB77D]/5' : 'text-[#EBE0DA] font-medium'}`}
+                                    >
+                                        Arabic (العربية)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                         <button 
-                            onClick={() => mutate()}
+                            onClick={() => mutate(lang)}
                             className="group relative px-10 py-5 bg-[#241F1B] border-2 border-[#FFB77D]/30 hover:border-[#FFB77D] rounded-full text-[#EBE0DA] text-lg font-bold tracking-widest uppercase transition-all duration-300 hover:shadow-2xl hover:shadow-[#FFB77D]/20 overflow-hidden"
                         >
                             <span className="relative z-10 flex items-center gap-3">
@@ -49,15 +85,23 @@ const page = () => {
                         {/* Interactive Area */}
                         <div className="w-full relative">
                             {/* Try Again Button (Top Right) */}
-                            <div className="absolute -top-16 right-0 md:right-4 z-50">
+                            <div className="absolute -top-16 right-0 md:right-4 z-50 flex items-center gap-3">
+                                <select 
+                                    value={lang}
+                                    onChange={(e) => setLang(e.target.value as 'en' | 'ar')}
+                                    className="px-3 py-2 bg-[#241F1B]/90 hover:bg-[#241F1B] border border-[#FFB77D]/30 rounded-xl text-xs md:text-sm text-[#EBE0DA] outline-none cursor-pointer hidden sm:block appearance-none min-w-[100px] text-center shadow-lg"
+                                    aria-label="Language"
+                                >
+                                    <option value="en">English</option>
+                                    <option value="ar">Arabic</option>
+                                </select>
                                 <button 
-                                    onClick={() => mutate()}
+                                    onClick={() => mutate(lang)}
                                     className="px-4 py-2 bg-[#241F1B]/80 hover:bg-[#241F1B] border border-[#FFB77D]/20 hover:border-[#FFB77D]/50 rounded-full text-xs md:text-sm text-[#FFB77D] tracking-wider transition-all"
                                 >
                                     Re-Roast (If you dare)
                                 </button>
                             </div>
-
                             {/* Main Roast Card */}
                             <RoastCard roast={roastData} />
                         </div>
